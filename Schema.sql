@@ -1,5 +1,5 @@
-CREATE DATABASE ArbokMovies;
-USE ArbokMovies;
+CREATE DATABASE arbok_movies;
+USE arbok_movies;
 
 CREATE TABLE users(
     id INT AUTO_INCREMENT,
