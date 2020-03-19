@@ -159,3 +159,7 @@ Elimina a una película con el `id` pasado por URL.
 
 `/movies/:id_movie/:id_genre`
 Borra de la tabla intermedia en donde están los géneros por película una fila que coincida `id_movie` y `id_genre`.
+
+### Frontend
+
+Este es el repositorio del front end que utilizamos para este Backend => https://github.com/NicolasMitre/arbokFrontend
