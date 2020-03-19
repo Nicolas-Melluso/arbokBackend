@@ -15,7 +15,7 @@ INSERT INTO users (username, pass, role) VALUES ("martin", "123", 2);
 
 CREATE TABLE movies(
     id INT AUTO_INCREMENT,
-    title VARCHAR(255),
+    title VARCHAR(255) UNIQUE,
     description TEXT,
     image VARCHAR(255),
     CONSTRAINT pk_id_movie PRIMARY KEY(id) 
@@ -23,7 +23,7 @@ CREATE TABLE movies(
 
 CREATE TABLE genres(
     id INT AUTO_INCREMENT,
-    name VARCHAR(30),
+    name VARCHAR(30) UNIQUE,
     CONSTRAINT pk_id_genre PRIMARY KEY(id)
 );
 
