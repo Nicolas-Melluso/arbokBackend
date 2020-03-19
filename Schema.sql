@@ -1,5 +1,5 @@
-CREATE DATABASE ArbokMovies;
-USE ArbokMovies;
+CREATE DATABASE arbok_movies;
+USE arbok_movies;
 
 CREATE TABLE users(
     id INT AUTO_INCREMENT,
@@ -33,6 +33,19 @@ INSERT INTO genres (id, name) VALUES (16, "Animation");
 INSERT INTO genres (id, name) VALUES (18, "Drama");
 INSERT INTO genres (id, name) VALUES (27, "Horror");
 INSERT INTO genres (id, name) VALUES (28, "Action");
+INSERT INTO genres (id, name) VALUES (35, "Comedy");
+INSERT INTO genres (id, name) VALUES (36, "History");
+INSERT INTO genres (id, name) VALUES (37, "Western");
+INSERT INTO genres (id, name) VALUES (53, "Thriller");
+INSERT INTO genres (id, name) VALUES (80, "Crime");
+INSERT INTO genres (id, name) VALUES (99, "Documentary");
+INSERT INTO genres (id, name) VALUES (878, "Science Fiction");
+INSERT INTO genres (id, name) VALUES (9648, "Mystery");
+INSERT INTO genres (id, name) VALUES (10402, "Music");
+INSERT INTO genres (id, name) VALUES (10749, "Romance");
+INSERT INTO genres (id, name) VALUES (10751, "Family");
+INSERT INTO genres (id, name) VALUES (10752, "War");
+INSERT INTO genres (id, name) VALUES (10770, "TV Movie");
 
 CREATE TABLE movie_user(
     id_user INT,
