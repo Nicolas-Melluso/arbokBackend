@@ -22,124 +22,140 @@ npm install
 
 De esta forma, terminaremos de instalar todo lo que requiere nuestro proyecto. :+1:
 
+### Inicialización
+
+Para inicialiarlo podremos escribir por consola el comando "nodemon server/server.js" o bien optar por el script personalizado -> "npm run watch" que hace exactamente lo mismo.
+
 ## Endpoints
+
 ### GET
 
 #### Películas
+
 Lista de películas que el administrador cargó para que el usuario vea
-```/movies/```
+`/movies/`
 
 Pelicula buscada por ID
-```/movies/:id```
+`/movies/:id`
 
 Lista de peliculas y los usuarios que las marcaron como favoritos
-```/movies/favorites```
+`/movies/favorites`
 
 Película buscada por título
-```/movies/title/:title```
+`/movies/title/:title`
 
 Película buscada por titulo en la API de themoviedb
-```/movies/nameapi/:movie```
+`/movies/nameapi/:movie`
 
 Películas traídas de la API de themoviedb para que vea el administrador
-```/movies/fill/:page```
+`/movies/fill/:page`
 
 #### Géneros
 
 Lista de todos los géneros
-```/genres/```
+`/genres/`
 
 Genero buscado por ID
-```/genres/:id/```
+`/genres/:id/`
 
 Géneros con sus películas
-```/genres/movies```
+`/genres/movies`
 
 #### Usuarios
 
 Lista de todos los usuarios
-```/users/```
+`/users/`
 
 Usuario buscado por ID
-```/users/:id```
+`/users/:id`
 
 Peliculas favoritas del usuario buscado por ID
-```/users/:id/favorites```
+`/users/:id/favorites`
 
 Todos los usuarios de cierto rol
-```/users/role/:role```
+`/users/role/:role`
 
 Todos los usuarios separados por rol
-```/users/split```
+`/users/split`
 
 ### POST
 
 #### Películas
-```/movies/```
+
+`/movies/`
 Añade una nueva película, a ésta se le debe pasar por medio del body los atributos `title`, `description`, `image` y el id de los `genre`. Por ejemplo:
-``` 
+
+```
     {
       name: "Sonic",
       description: "Erizo",
       image: "/1.jpg",
       genres: [{id: 1}]
      }
-  ```
-  
-  #### Usuarios
-```/users/```
+```
+
+#### Usuarios
+
+`/users/`
 Añade un nuevo usuario, se le debe pasar por medio del body los atributos `username`, `pass`, `role`. Por ejemplo:
-``` 
+
+```
     {
       username: "florencia123",
       pass: "1234",
       role: "1"
      }
-  ```
-  
-  ```/users/getUser```
+```
+
+`/users/getUser`
 Devuelve el usuario en sesión, se le debe pasar por medio del body el `token`.
 
-```/users/login```
+`/users/login`
 Hace que un usuario inicie sesión, se le debe pasar por medio del body el `username` y la `pass`.
 
-  ```/users/logout```
+`/users/logout`
 Cierra sesión del usuario, se le debe pasar por medio del body el `token`.
 
-  ```/users/:id/movie/:movie```
+`/users/:id/movie/:movie`
 Añade una película a los favoritos de cierto usuario, se le debe pasar por URL el `id` del usuario y el id de la `movie`.
 
-  #### Géneros
-```/genres/```
+#### Géneros
+
+`/genres/`
 Añade un nuevo genero, se le debe pasar por medio del body el atributo `name`. Por ejemplo:
-``` 
+
+```
     {
       name: "Fantasía"
      }
-  ```
-  
-  ```/genres/:id/movie/:movie```
+```
+
+`/genres/:id/movie/:movie`
 Añade a una pélicula cierto genero. Se deben pasar por URL el `id` del género y el id de la `movie`.
 
 ### PUT
 
 #### Users
-```/users/updatepassword/```
+
+`/users/updatepassword/`
 Cambia la contraseña, se debe pasar por medio del body el `id` del usuario al que se le va a cambiar la contrasña y la nueva contraseña (`pass`).
 
 ### DELETE
 
 #### Users
-```/users/:id```
+
+`/users/:id`
 Elimina a un usuario con el `id` pasado por URL.
 
 #### Genres
-```/genres/:id```
+
+`/genres/:id`
 Elimina a un genero con el `id` pasado por URL.
 
 #### Movies
-```/movies/:id```
+
+`/movies/:id`
 Elimina a una película con el `id` pasado por URL.
 
-```/movies/:id_movie/:id_genre```
+`/movies/:id_movie/:id_genre`
 Borra de la tabla intermedia en donde están los géneros por película una fila que coincida `id_movie` y `id_genre`.
