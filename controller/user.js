@@ -191,7 +191,7 @@ const logout = (req, res, next) => {
 
 const viewUserFavorites = (req, res) => {
   db.query(
-    "SELECT m.id, m.titfle, m.description, m.image FROM movies m JOIN	movie_user mu ON (m.id = mu.id_movie) WHERE id_user = ?",
+    "SELECT m.id, m.title, m.description, m.image FROM movies m JOIN	movie_user mu ON (m.id = mu.id_movie) WHERE id_user = ?",
     [req.params.id],
     function(err, movieRows) {
       if (err) {
@@ -199,7 +199,9 @@ const viewUserFavorites = (req, res) => {
         throw err;
       }
       if (!movieRows.length) {
-        return res.status(400).send("Not favorites movies found for that user ID");
+        return res
+          .status(400)
+          .send("Not favorites movies found for that user ID");
       }
       db.query(
         ` SELECT
@@ -259,7 +261,9 @@ const newFavorite = (req, res) => {
       return res.status(400).send("Couldn't add movie to favorites!");
     }
 
-    res.status(200).json({ id_user: req.params.id_user, id_movie: req.params.id_movie });
+    res
+      .status(200)
+      .json({ id_user: req.params.id_user, id_movie: req.params.id_movie });
   });
 };
 

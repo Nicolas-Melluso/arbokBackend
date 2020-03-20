@@ -6,14 +6,16 @@ const apiKey = process.env.API_KEY;
 
 //VIEW ALL THE MOVIES WITH THEIR ATTRIBUTES
 const viewAll = (req, res) => {
-  db.query("SELECT m.id, m.title, m.description, m.image FROM movies m;", function(err, movieRows) {
-    if (err) {
-      res.status(500).send("Internal error.");
-      throw err;
-    }
+  db.query(
+    "SELECT m.id, m.title, m.description, m.image FROM movies m;",
+    function(err, movieRows) {
+      if (err) {
+        res.status(500).send("Internal error.");
+        throw err;
+      }
 
-    db.query(
-      ` SELECT
+      db.query(
+        ` SELECT
         m.id as "movie_id",
         g.id as "genre_id",
         g.name AS "genre"
@@ -23,32 +25,33 @@ const viewAll = (req, res) => {
         (gm.id_movie = m.id)
       JOIN genres g ON
         (g.id = gm.id_genre)`,
-      function(err, genreRows) {
-        if (err) {
-          res.status(500).send("Internal error.");
-          throw err;
-        }
+        function(err, genreRows) {
+          if (err) {
+            res.status(500).send("Internal error.");
+            throw err;
+          }
 
-        movieRows.forEach(movie => {
-          movie.genres = [];
-          genreRows.map(genre => {
-            if (movie.id === genre.movie_id) {
-              const gen = {
-                id: genre.genre_id,
-                name: genre.genre
-              };
+          movieRows.forEach(movie => {
+            movie.genres = [];
+            genreRows.map(genre => {
+              if (movie.id === genre.movie_id) {
+                const gen = {
+                  id: genre.genre_id,
+                  name: genre.genre
+                };
 
-              movie.genres.push(gen);
-            }
+                movie.genres.push(gen);
+              }
+            });
           });
-        });
-        if (!movieRows.length) {
-          return res.status(400).send("Not movies found.");
+          if (!movieRows.length) {
+            return res.status(400).send("Not movies found.");
+          }
+          res.send(movieRows);
         }
-        res.send(movieRows);
-      }
-    );
-  });
+      );
+    }
+  );
 };
 
 //VIEW ONLY ONE MOVIE WITH ITS ATTRIBUTES BY ID, THE ID IS OBTEINED FROM THE URL
@@ -108,8 +111,6 @@ const searchMovieByNameAPI = async (req, res) => {
     return res.status(500).send("Internal error");
   });
   const data = await response.json();
-  console.log(data);
-
   if (!data.results.length) {
     return res.status(400).send("Not movies found according to that name");
   }
@@ -198,7 +199,9 @@ const deleteByID = (req, res) => {
       throw err;
     }
     if (!results.affectedRows) {
-      return res.status(400).send("Didn't find any movie to remove with that ID");
+      return res
+        .status(400)
+        .send("Didn't find any movie to remove with that ID");
     }
     res.status(200).send("Movie Succesfully removed!");
   });
@@ -215,7 +218,9 @@ const deleteGenreMovieByID = (req, res) => {
     if (!results.affectedRows) {
       return res
         .status(400)
-        .send("Didn't find any movie/genre relation to remove with that criteria");
+        .send(
+          "Didn't find any movie/genre relation to remove with that criteria"
+        );
     }
     res.status(200).send("Movie/Genre relation removed!");
   });
@@ -226,7 +231,8 @@ const deleteGenreMovieByID = (req, res) => {
 // SETS NEW VALUES FOR A MOVIE
 const update = (req, res) => {
   const { id, title, description, image } = req.body;
-  const sql = "UPDATE movies SET title = ?, description = ?, image = ? WHERE id = ?;";
+  const sql =
+    "UPDATE movies SET title = ?, description = ?, image = ? WHERE id = ?;";
   db.query(sql, [title, description, image, id], function(err, result) {
     if (err) {
       res.status(500).send("Internal error");
