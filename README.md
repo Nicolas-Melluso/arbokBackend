@@ -78,8 +78,13 @@ Todos los usuarios de cierto rol
 Todos los usuarios separados por rol
 `/users/split`
 
+<<<<<<< HEAD
 `/users/getUser`
 Devuelve el usuario en sesión, se le debe pasar por medio del body el `token`.
+=======
+Usuario en sesión
+`/users/getUser`
+>>>>>>> 29d1f551f6c86bbfb7f70e95aaf53cd9c7cafe5a
 
 ### POST
 
