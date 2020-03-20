@@ -1,18 +1,19 @@
 const express = require("express");
 const genresController = require("../controller/genre.js");
 const router = express.Router();
+const auth = require("../middlewares/auth").auth;
+const validate = require("../middlewares/validator").validate;
 
 /* getters */
-router.get("/", genresController.viewAll);
-router.get("/:id([0-9]*)", genresController.viewByID);
-router.get("/movies", genresController.viewGenresMovies);
+router.get("/", auth, validate, genresController.viewAll);
+router.get("/:id([0-9]*)", auth, validate, genresController.viewByID);
+router.get("/movies", auth, validate, genresController.viewGenresMovies);
 
+// /* posters */
+router.post("/", auth, validate, genresController.addNewData);
+router.post("/:id_genre/movie/:id_movie", auth, validate, genresController.addMovieToGenre);
 
-// /* postters */
-router.post("/", genresController.addNewData);
-router.post("/:id/movie/:movie", genresController.addMovieToGenre);
-
-/* deletters */
-router.delete("/:id", genresController.deleteByID); 
+/* deleters */
+router.delete("/:id", auth, validate, genresController.deleteByID);
 
 module.exports = router;

@@ -5,22 +5,21 @@ const auth = require("../middlewares/auth").auth;
 const validate = require("../middlewares/validator").validate;
 
 /* getters */
-router.get("/", moviesController.viewAll); //add
-router.get("/:id([0-9]*)", moviesController.viewByID);
-router.get("/favorites", moviesController.viewMoviesFavorites); //add
-router.get("/title/:title", moviesController.searchByTitle);
-router.get("/nameapi/:movie", moviesController.searchMovieByNameAPI);
-router.get("/namedb/:movie", moviesController.searchMovieByNameDB);
+router.get("/", auth, validate, moviesController.viewAll); //add
+router.get("/:id([0-9]*)", auth, validate, moviesController.viewByID);
+router.get("/favorites", auth, validate, moviesController.viewMoviesFavorites); //add
+router.get("/nameapi/:movie_name/:page", auth, validate, moviesController.searchMovieByNameAPI);
+router.get("/namedb/:movie_name", auth, validate, moviesController.searchMovieByNameDB);
 router.get("/fill/:page([0-9]*)", auth, validate, moviesController.fillAdminAdd);
 
 // /* posters */
-router.post("/", moviesController.addNewData); // by body - parser
+router.post("/", auth, validate, moviesController.addNewData); // by body - parser
 
 /* deleters */
-router.delete("/:id", moviesController.deleteByID);
-router.delete("/:id_movie/:id_genre", moviesController.deleteGenreMovieByID);
+router.delete("/:id", auth, validate, moviesController.deleteByID);
+router.delete("/:id_movie/:id_genre", auth, validate, moviesController.deleteGenreMovieByID);
 
 // /* updaters */
-// router.put("/", moviesController.upgrade); // by body - parser
+router.put("/", auth, validate, moviesController.update); // by body - parser
 
 module.exports = router;
