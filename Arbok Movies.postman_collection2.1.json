@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "27c86d4c-0c4d-4b7e-ba02-9a99333c8e80",
+		"_postman_id": "063f7501-7e05-4d79-ab18-c112def427fe",
 		"name": "Arbok Movies",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -19,7 +19,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "INSERT TOKEN HERE",
+											"value": "{{token}}",
 											"type": "string"
 										}
 									]
@@ -54,7 +54,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "INSERT TOKEN HERE",
+											"value": "{{token}}",
 											"type": "string"
 										}
 									]
@@ -95,7 +95,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "INSERT TOKEN HERE",
+											"value": "{{token}}",
 											"type": "string"
 										}
 									]
@@ -137,7 +137,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "INSERT TOKEN HERE",
+											"value": "{{token}}",
 											"type": "string"
 										}
 									]
@@ -181,7 +181,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "INSERT TOKEN HERE",
+											"value": "{{token}}",
 											"type": "string"
 										}
 									]
@@ -242,7 +242,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "INSERT TOKEN HERE",
+											"value": "{{token}}",
 											"type": "string"
 										}
 									]
@@ -299,7 +299,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "INSERT TOKEN HERE",
+											"value": "{{token}}",
 											"type": "string"
 										}
 									]
@@ -338,7 +338,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "INSERT TOKEN HERE",
+											"value": "{{token}}",
 											"type": "string"
 										}
 									]
@@ -379,7 +379,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "INSERT TOKEN HERE",
+											"value": "{{token}}",
 											"type": "string"
 										}
 									]
@@ -414,7 +414,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "INSERT TOKEN HERE",
+											"value": "{{token}}",
 											"type": "string"
 										}
 									]
@@ -461,7 +461,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "INSERT TOKEN HERE",
+											"value": "{{token}}",
 											"type": "string"
 										}
 									]
@@ -503,7 +503,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "INSERT TOKEN HERE",
+											"value": "{{token}}",
 											"type": "string"
 										}
 									]
@@ -552,7 +552,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "INSERT TOKEN HERE",
+											"value": "{{token}}",
 											"type": "string"
 										}
 									]
@@ -599,7 +599,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "INSERT TOKEN HERE",
+											"value": "{{token}}",
 											"type": "string"
 										}
 									]
@@ -651,7 +651,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "INSERT TOKEN HERE",
+											"value": "{{token}}",
 											"type": "string"
 										}
 									]
@@ -692,7 +692,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "INSERT TOKEN HERE",
+											"value": "{{token}}",
 											"type": "string"
 										}
 									]
@@ -773,7 +773,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "INSERT TOKEN HERE",
+											"value": "{{token}}",
 											"type": "string"
 										}
 									]
@@ -815,7 +815,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "INSERT TOKEN HERE",
+											"value": "{{token}}",
 											"type": "string"
 										}
 									]
@@ -856,7 +856,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "INSERT TOKEN HERE",
+											"value": "{{token}}",
 											"type": "string"
 										}
 									]
@@ -898,7 +898,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "INSERT TOKEN HERE",
+											"value": "{{token}}",
 											"type": "string"
 										}
 									]
@@ -933,7 +933,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "INSERT TOKEN HERE",
+											"value": "{{token}}",
 											"type": "string"
 										}
 									]
@@ -1050,7 +1050,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "INSERT TOKEN HERE",
+											"value": "{{token}}",
 											"type": "string"
 										}
 									]
@@ -1095,7 +1095,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "INSERT TOKEN HERE",
+											"value": "{{token}}",
 											"type": "string"
 										}
 									]
@@ -1156,7 +1156,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "INSERT TOKEN HERE",
+											"value": "{{token}}",
 											"type": "string"
 										}
 									]
@@ -1208,7 +1208,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "INSERT TOKEN HERE",
+											"value": "{{token}}",
 											"type": "string"
 										}
 									]
