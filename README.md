@@ -78,6 +78,9 @@ Todos los usuarios de cierto rol
 Todos los usuarios separados por rol
 `/users/split`
 
+`/users/getUser`
+Devuelve el usuario en sesión, se le debe pasar por medio del body el `token`.
+
 ### POST
 
 #### Películas
@@ -106,9 +109,6 @@ Añade un nuevo usuario, se le debe pasar por medio del body los atributos `user
       role: "1"
      }
 ```
-
-`/users/getUser`
-Devuelve el usuario en sesión, se le debe pasar por medio del body el `token`.
 
 `/users/login`
 Hace que un usuario inicie sesión, se le debe pasar por medio del body el `username` y la `pass`.
@@ -139,6 +139,11 @@ Añade a una pélicula cierto genero. Se deben pasar por URL el `id` del género
 
 `/users/updatepassword/`
 Cambia la contraseña, se debe pasar por medio del body el `id` del usuario al que se le va a cambiar la contrasña y la nueva contraseña (`pass`).
+
+#### Movies
+
+`/movies/`
+Cambia los datos de la pelicula, se debe pasar por medio del body el `id` de la pelicula, su título, su descripción, sus generos.
 
 ### DELETE
 
