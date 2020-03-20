@@ -140,6 +140,11 @@ Añade a una pélicula cierto genero. Se deben pasar por URL el `id` del género
 `/users/updatepassword/`
 Cambia la contraseña, se debe pasar por medio del body el `id` del usuario al que se le va a cambiar la contrasña y la nueva contraseña (`pass`).
 
+#### Movies
+
+`/movies/`
+Cambia los datos de la pelicula, se debe pasar por medio del body el `id` de la pelicula, su título, su descripción, sus generos.
+
 ### DELETE
 
 #### Users
