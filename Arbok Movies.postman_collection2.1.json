@@ -589,6 +589,58 @@
 					"_postman_isSubFolder": true
 				},
 				{
+					"name": "PUT's",
+					"item": [
+						{
+							"name": "Update Movie",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "INSERT TOKEN HERE",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": \"\",\n    \"title\": \"\",\n    \"description\": \"\",\n    \"image\": \"\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{node}}/api/movies/",
+									"host": [
+										"{{node}}"
+									],
+									"path": [
+										"api",
+										"movies",
+										""
+									]
+								},
+								"description": "All fields must be filled"
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
 					"name": "DELETES's",
 					"item": [
 						{
@@ -675,58 +727,6 @@
 										}
 									]
 								}
-							},
-							"response": []
-						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
-				},
-				{
-					"name": "PUT's",
-					"item": [
-						{
-							"name": "Update Movie",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "INSERT TOKEN HERE",
-											"type": "string"
-										}
-									]
-								},
-								"method": "PUT",
-								"header": [
-									{
-										"key": "Content-Type",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"id\": \"\",\n    \"title\": \"\",\n    \"description\": \"\",\n    \"image\": \"\"\n}\n",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{node}}/api/movies/",
-									"host": [
-										"{{node}}"
-									],
-									"path": [
-										"api",
-										"movies",
-										""
-									]
-								},
-								"description": "All fields must be filled"
 							},
 							"response": []
 						}
