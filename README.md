@@ -78,6 +78,9 @@ Todos los usuarios de cierto rol
 Todos los usuarios separados por rol
 `/users/split`
 
+Usuario en sesión
+`/users/getUser`
+
 ### POST
 
 #### Películas
