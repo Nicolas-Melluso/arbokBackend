@@ -13,34 +13,52 @@ const register = (req, res) => {
 
   const sql = `INSERT INTO users (username, pass, role) VALUES (?,?,?);`;
   db.query(sql, [username, hashedPassword, role], function(err, results) {
-    if (err) throw err;
-    res.json(results);
+    if (err) {
+      res.status(500).send("Internal error");
+      throw err;
+    }
+    if (!results.affectedRows) {
+      return res.status(400).send("Couldn't register the user");
+    }
+
+    res.status(200).json({ username: username, password: pass, role: role });
   });
 };
 
 const getLoggedUser = (req, res) => {
-  const { token } = req.body;
+  const { token } = req.query;
 
-  redisService.get(`TOKEN_${token}`, (err, result) => {
+  redisService.get(`TOKEN_${token}`, (err, results) => {
     if (err) {
       return res.status(500).send("Internal Server Error.");
     }
-    res.json(result);
+    if (!results) {
+      // 0 or 1
+      return res.status(400).send("Can't Retrieve data");
+    }
+    res.json(JSON.parse(results));
   });
 };
 
 const updatePassword = (req, res) => {
-  const { pass, id } = req.body;
+  const { newPassword, id } = req.body;
 
   const hashedPassword = crypto
     .createHash("sha256")
-    .update(pass)
+    .update(newPassword)
     .digest("hex");
 
   const sql = `UPDATE users SET pass = ? WHERE id=? ;`;
   db.query(sql, [hashedPassword, id], function(err, results) {
-    if (err) throw err;
-    res.json(results);
+    if (err) {
+      res.status(500).send("Internal error");
+      throw err;
+    }
+    if (!results.affectedRows) {
+      return res.status(400).send("Couldn't update the password");
+    }
+
+    res.status(200).send("Password was updated");
   });
 };
 
@@ -49,8 +67,15 @@ const deleteUserById = (req, res) => {
 
   const sql = `DELETE from users WHERE id=? ;`;
   db.query(sql, [id], function(err, results) {
-    if (err) throw err;
-    res.json(results);
+    if (err) {
+      res.status(500).send("Internal error");
+      throw err;
+    }
+    if (!results.affectedRows) {
+      return res.status(400).send("Couldn't delete any user with that ID");
+    }
+
+    res.status(200).send("User deleted successfully");
   });
 };
 
@@ -59,8 +84,15 @@ const getUserById = (req, res) => {
 
   const sql = `SELECT id, username, pass, role FROM users WHERE id=? ;`;
   db.query(sql, [id], function(err, results) {
-    if (err) throw err;
-    res.json(results);
+    if (err) {
+      res.status(500).send("Internal error");
+      throw err;
+    }
+    if (!results.length) {
+      return res.status(400).send("Not user found according to that ID");
+    }
+    const user = results[0];
+    res.status(200).json(user);
   });
 };
 
@@ -69,22 +101,31 @@ const getUserByRole = (req, res) => {
 
   const sql = `SELECT id, username, pass, role FROM users WHERE role=? ;`;
   db.query(sql, [role], function(err, results) {
-    if (err) throw err;
-    res.json(results);
+    if (err) {
+      res.status(500).send("Internal error");
+      throw err;
+    }
+    if (!results.length) {
+      return res.status(400).send("Not users found according to that criteria");
+    }
+    res.status(200).json(results);
   });
 };
 
 const getAllSplittedByRole = (req, res) => {
-  const { role } = req.params;
-
   const sql = `SELECT id, username, pass, role FROM users;`;
-  db.query(sql, [role], function(err, results) {
-    if (err) throw err;
-
+  db.query(sql, function(err, results) {
+    if (err) {
+      res.status(500).send("Internal error");
+      throw err;
+    }
+    if (!results.length) {
+      return res.status(400).send("Not users found");
+    }
     const normalUsers = results.filter(user => user.role === 2);
     const adminUsers = results.filter(user => user.role === 1);
 
-    res.json(
+    res.status(200).json(
       (users = {
         normalUsers: normalUsers,
         adminUsers: adminUsers
@@ -104,10 +145,12 @@ const login = (req, res) => {
   const sql = `SELECT id, username, pass, role FROM users WHERE username=? AND pass =?;`;
   db.query(sql, [username, hashedPassword], function(err, results) {
     if (err) {
-      return res.status(500).send(false);
+      res.status(500).send("Internal error");
+      throw err;
     }
+
     if (!results.length) {
-      return res.status(400).send(false);
+      return res.status(400).send("Wrong Username/Password Combination");
     }
     const token = util.generateString(28);
     const result = results[0];
@@ -133,20 +176,31 @@ const login = (req, res) => {
 const logout = (req, res, next) => {
   const { token } = req.body;
 
-  redisService.delete(`TOKEN_${token}`, err => {
+  redisService.delete(`TOKEN_${token}`, (err, results) => {
     if (err) {
       return res.status(500).send("Internal Server Error.");
     }
-    return res.status(200).end();
+    if (!results) {
+      // 0 or 1
+      return res.status(400).send("Logout failed");
+    }
+
+    return res.status(200).end("Logged out Successfully");
   });
 };
 
 const viewUserFavorites = (req, res) => {
   db.query(
-    "SELECT m.id, m.title, m.description, m.image FROM movies m JOIN	movie_user mu ON (m.id = mu.id_movie) WHERE id_user = ?",
+    "SELECT m.id, m.titfle, m.description, m.image FROM movies m JOIN	movie_user mu ON (m.id = mu.id_movie) WHERE id_user = ?",
     [req.params.id],
     function(err, movieRows) {
-      if (err) throw err;
+      if (err) {
+        res.status(500).send("Internal error");
+        throw err;
+      }
+      if (!movieRows.length) {
+        return res.status(400).send("Not favorites movies found for that user ID");
+      }
       db.query(
         ` SELECT
         m.id as "movie_id",
@@ -170,11 +224,13 @@ const viewUserFavorites = (req, res) => {
           id_user = ?) `,
         [req.params.id],
         function(err, genreRows) {
-          if (err) throw err;
-
+          if (err) {
+            res.status(500).send("Internal error");
+            throw err;
+          }
           movieRows.forEach(movie => {
             movie.genres = [];
-            genreRows.map(genre => {
+            genreRows.forEach(genre => {
               if (movie.id === genre.movie_id) {
                 const gen = {
                   id: genre.genre_id,
@@ -194,9 +250,16 @@ const viewUserFavorites = (req, res) => {
 
 const newFavorite = (req, res) => {
   const sql = "INSERT INTO movie_user (id_user, id_movie) VALUES (?, ?)";
-  db.query(sql, [req.params.id, req.params.movie], (err, data) => {
-    if (err) throw err;
-    res.json(data);
+  db.query(sql, [req.params.id_user, req.params.id_movie], (err, results) => {
+    if (err) {
+      res.status(500).send("Internal error");
+      throw err;
+    }
+    if (!results.affectedRows) {
+      return res.status(400).send("Couldn't add movie to favorites!");
+    }
+
+    res.status(200).json({ id_user: req.params.id_user, id_movie: req.params.id_movie });
   });
 };
 
