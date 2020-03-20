@@ -1,0 +1,1285 @@
+{
+	"info": {
+		"_postman_id": "27c86d4c-0c4d-4b7e-ba02-9a99333c8e80",
+		"name": "Arbok Movies",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "genres",
+			"item": [
+				{
+					"name": "GET's",
+					"item": [
+						{
+							"name": "Get all genres",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "INSERT TOKEN HERE",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{node}}/api/genres/",
+									"host": [
+										"{{node}}"
+									],
+									"path": [
+										"api",
+										"genres",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get genre by id",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "INSERT TOKEN HERE",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{node}}/api/genres/:id",
+									"host": [
+										"{{node}}"
+									],
+									"path": [
+										"api",
+										"genres",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get all genres with their respective movies",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "INSERT TOKEN HERE",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{node}}/api/genres/movies",
+									"host": [
+										"{{node}}"
+									],
+									"path": [
+										"api",
+										"genres",
+										"movies"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "POST's",
+					"item": [
+						{
+							"name": "Add a new Genre",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "INSERT TOKEN HERE",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{node}}/api/genres/",
+									"host": [
+										"{{node}}"
+									],
+									"path": [
+										"api",
+										"genres",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add a genre to a movie",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "INSERT TOKEN HERE",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{node}}/api/genres/:id_genre/movie/:id_movie",
+									"host": [
+										"{{node}}"
+									],
+									"path": [
+										"api",
+										"genres",
+										":id_genre",
+										"movie",
+										":id_movie"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "id_genre",
+											"value": ""
+										},
+										{
+											"key": "id_movie",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "DELETES's",
+					"item": [
+						{
+							"name": "Delete a genre by id",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "INSERT TOKEN HERE",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{node}}/api/genres/:id",
+									"host": [
+										"{{node}}"
+									],
+									"path": [
+										"api",
+										"genres",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "movies",
+			"item": [
+				{
+					"name": "GET's",
+					"item": [
+						{
+							"name": "Get all movies from DB",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "INSERT TOKEN HERE",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{node}}/api/movies/",
+									"host": [
+										"{{node}}"
+									],
+									"path": [
+										"api",
+										"movies",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get a movie by ID",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "INSERT TOKEN HERE",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{node}}/api/movies/:id",
+									"host": [
+										"{{node}}"
+									],
+									"path": [
+										"api",
+										"movies",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "view all Favorites Movies",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "INSERT TOKEN HERE",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{node}}/api/movies/favorites",
+									"host": [
+										"{{node}}"
+									],
+									"path": [
+										"api",
+										"movies",
+										"favorites"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Search Movies by name From the API",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "INSERT TOKEN HERE",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{node}}/api/movies/nameapi/:movie_name/:page",
+									"host": [
+										"{{node}}"
+									],
+									"path": [
+										"api",
+										"movies",
+										"nameapi",
+										":movie_name",
+										":page"
+									],
+									"variable": [
+										{
+											"key": "movie_name",
+											"value": ""
+										},
+										{
+											"key": "page",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Search movies by name From the DB",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "INSERT TOKEN HERE",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{node}}/api/movies/namedb/:movie_name",
+									"host": [
+										"{{node}}"
+									],
+									"path": [
+										"api",
+										"movies",
+										"namedb",
+										":movie_name"
+									],
+									"variable": [
+										{
+											"key": "movie_name",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Popular Movies from the API",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "INSERT TOKEN HERE",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{node}}/api/movies/fill/:page",
+									"host": [
+										"{{node}}"
+									],
+									"path": [
+										"api",
+										"movies",
+										"fill",
+										":page"
+									],
+									"variable": [
+										{
+											"key": "page",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "POST's",
+					"item": [
+						{
+							"name": "Add a new movie",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "INSERT TOKEN HERE",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\"title\": \"\",\n\"description\": \"\",\n\"image\": \"\",\n\"genres\": [{\"id\": \"\" , \"name\": \"\"},{\"id\": \"\", \"name\": \"\"}]\n}\n"
+								},
+								"url": {
+									"raw": "{{node}}/api/movies/",
+									"host": [
+										"{{node}}"
+									],
+									"path": [
+										"api",
+										"movies",
+										""
+									]
+								},
+								"description": "This endpoint add movies by body-parser. It requires a Genre array and links all of them to the specific movie ID. \n\nAn example of a raw Json body:\n\n{\n\"title\": \"Example Title\",\n\"description\": \"Example Description\",\n\"image\": \"Example Image\",\n\"genres\": [{\"id\": \"27\" , \"name\": \"Example name 1\"},{\"id\": \"28\", \"name\": \"Example name 2\"}]\n}"
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "DELETES's",
+					"item": [
+						{
+							"name": "Delete a movie by ID",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "INSERT TOKEN HERE",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{node}}/api/movies/:id",
+									"host": [
+										"{{node}}"
+									],
+									"path": [
+										"api",
+										"movies",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete a genre from a Movie",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "INSERT TOKEN HERE",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{node}}/api/movies/:id_movie/:id_genre",
+									"host": [
+										"{{node}}"
+									],
+									"path": [
+										"api",
+										"movies",
+										":id_movie",
+										":id_genre"
+									],
+									"variable": [
+										{
+											"key": "id_movie",
+											"value": ""
+										},
+										{
+											"key": "id_genre",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "PUT's",
+					"item": [
+						{
+							"name": "Update Movie",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "INSERT TOKEN HERE",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": \"\",\n    \"title\": \"\",\n    \"description\": \"\",\n    \"image\": \"\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{node}}/api/movies/",
+									"host": [
+										"{{node}}"
+									],
+									"path": [
+										"api",
+										"movies",
+										""
+									]
+								},
+								"description": "All fields must be filled"
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "8e7afedb-64e7-4bb9-90c3-fe7b09ef42e9",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "5c864b32-005b-4cc1-8871-845a23c05f99",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "GET's",
+					"item": [
+						{
+							"name": "Get Favorites movies of a specific user by ID",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "INSERT TOKEN HERE",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{node}}/api/users/:id/favorites",
+									"host": [
+										"{{node}}"
+									],
+									"path": [
+										"api",
+										"users",
+										":id",
+										"favorites"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get user by ID",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "INSERT TOKEN HERE",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{node}}/api/users/:id",
+									"host": [
+										"{{node}}"
+									],
+									"path": [
+										"api",
+										"users",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get all the users of a Role",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "INSERT TOKEN HERE",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{node}}/api/users/role/:role",
+									"host": [
+										"{{node}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"role",
+										":role"
+									],
+									"variable": [
+										{
+											"key": "role",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "View all users splitted by Role",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "INSERT TOKEN HERE",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{node}}/api/users/split",
+									"host": [
+										"{{node}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"split"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Logged User by Token",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "INSERT TOKEN HERE",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{node}}/api/users/getUser?token=",
+									"host": [
+										"{{node}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"getUser"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": ""
+										}
+									]
+								},
+								"description": "Get Logged User by bringing a token"
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "POST's",
+					"item": [
+						{
+							"name": "Register a new User",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"\",\n    \"pass\": \"\",\n    \"role\": \"\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{node}}/api/users/",
+									"host": [
+										"{{node}}"
+									],
+									"path": [
+										"api",
+										"users",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Login with an existent User",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"username\": \"\",\n\t\"pass\":\"\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{node}}/api/users/login",
+									"host": [
+										"{{node}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Logout",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "INSERT TOKEN HERE",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"token\": \"\"\n\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{node}}/api/users/logout",
+									"host": [
+										"{{node}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"logout"
+									]
+								},
+								"description": "Token is needed to destroy the data of that session."
+							},
+							"response": []
+						},
+						{
+							"name": "Add a favorite Movie to a User",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "INSERT TOKEN HERE",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{node}}/api/users/:id_user/movie/:id_movie",
+									"host": [
+										"{{node}}"
+									],
+									"path": [
+										"api",
+										"users",
+										":id_user",
+										"movie",
+										":id_movie"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "id_user",
+											"value": ""
+										},
+										{
+											"key": "id_movie",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "PUT's",
+					"item": [
+						{
+							"name": "Update user Password",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "INSERT TOKEN HERE",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"newPassword\": \"\",\n    \"id\": \n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{node}}/api/users/updatePassword",
+									"host": [
+										"{{node}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"updatePassword"
+									]
+								},
+								"description": "Only new password and id needs to be provided"
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "DELETES's",
+					"item": [
+						{
+							"name": "Delete a user by ID",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "INSERT TOKEN HERE",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{node}}/api/users/:id",
+									"host": [
+										"{{node}}"
+									],
+									"path": [
+										"api",
+										"users",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "8e7afedb-64e7-4bb9-90c3-fe7b09ef42e9",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "5c864b32-005b-4cc1-8871-845a23c05f99",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "",
+				"type": "string"
+			}
+		]
+	},
+	"protocolProfileBehavior": {}
+}
