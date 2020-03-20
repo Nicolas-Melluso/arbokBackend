@@ -110,9 +110,6 @@ Añade un nuevo usuario, se le debe pasar por medio del body los atributos `user
      }
 ```
 
-`/users/getUser`
-Devuelve el usuario en sesión, se le debe pasar por medio del body el `token`.
-
 `/users/login`
 Hace que un usuario inicie sesión, se le debe pasar por medio del body el `username` y la `pass`.
 
