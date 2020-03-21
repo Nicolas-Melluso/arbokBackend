@@ -10,7 +10,7 @@ const viewAll = (req, res) => {
       res.status(500).send("Internal error");
       throw err;
     }
-    if (!rows.length) {
+    if (rows && !rows.length) {
       return res.status(400).send("Not genres found");
     }
     res.status(200).json(rows);
@@ -25,7 +25,7 @@ const viewByID = (req, res) => {
       res.status(500).send("Internal error");
       throw err;
     }
-    if (!rows.length) {
+    if (rows && !rows.length) {
       return res.status(400).send("Not genre found with that ID");
     }
     res.status(200).json(rows);
@@ -41,7 +41,7 @@ const viewGenresMovies = (req, res) => {
       res.status(500).send("Internal error");
       throw err;
     }
-    if (!rows.length) {
+    if (rows && !rows.length) {
       return res.status(400).send("Not movie/genre combinations found");
     }
 
@@ -61,7 +61,7 @@ const addNewData = (req, res) => {
       res.status(500).send("Internal error");
       throw err;
     }
-    if (!results.affectedRows) {
+    if (results && !results.affectedRows) {
       return res.status(400).send("Couldn't add the Genre");
     }
     const { insertId } = results;
@@ -77,7 +77,7 @@ const addMovieToGenre = (req, res) => {
       res.status(500).send("Internal error");
       throw err;
     }
-    if (!results.affectedRows) {
+    if (results && !results.affectedRows) {
       return res.status(400).send("Couldn't add the genre/movie relation");
     }
     res.status(200).json({ id_genre: req.params.id_genre, id_movie: req.params.id_movie });
@@ -96,7 +96,7 @@ const deleteByID = (req, res) => {
       res.status(500).send("Internal error");
       throw err;
     }
-    if (!results.affectedRows) {
+    if (results && !results.affectedRows) {
       return res.status(400).send("Couldn't delete the genre");
     }
     res.status(200).send("Genre deleted successfully");

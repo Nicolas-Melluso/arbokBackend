@@ -17,27 +17,21 @@ const register = (req, res) => {
       res.status(500).send("Internal error");
       throw err;
     }
-    if (!results.affectedRows) {
+    if (results && !results.affectedRows) {
       return res.status(400).send("Couldn't register the user");
     }
 
-    res.status(200).json({ username: username, password: pass, role: role });
+    res.status(200).json({ username: username, role: role });
   });
 };
 
 const getLoggedUser = (req, res) => {
-  const { token } = req.query;
-
-  redisService.get(`TOKEN_${token}`, (err, results) => {
-    if (err) {
-      return res.status(500).send("Internal Server Error.");
-    }
-    if (!results) {
-      // 0 or 1
-      return res.status(400).send("Can't Retrieve data");
-    }
-    res.json(JSON.parse(results));
-  });
+  if (!req.session) {
+    return res.status(400).send("Not logged session detected");
+  }
+  const user = req.session;
+  user.pass = undefined;
+  res.json(user);
 };
 
 const updatePassword = (req, res) => {
@@ -54,7 +48,7 @@ const updatePassword = (req, res) => {
       res.status(500).send("Internal error");
       throw err;
     }
-    if (!results.affectedRows) {
+    if (results && !results.affectedRows) {
       return res.status(400).send("Couldn't update the password");
     }
 
@@ -71,7 +65,7 @@ const deleteUserById = (req, res) => {
       res.status(500).send("Internal error");
       throw err;
     }
-    if (!results.affectedRows) {
+    if (results && !results.affectedRows) {
       return res.status(400).send("Couldn't delete any user with that ID");
     }
 
@@ -88,10 +82,11 @@ const getUserById = (req, res) => {
       res.status(500).send("Internal error");
       throw err;
     }
-    if (!results.length) {
+    if (results && !results.length) {
       return res.status(400).send("Not user found according to that ID");
     }
     const user = results[0];
+    user.pass = undefined;
     res.status(200).json(user);
   });
 };
@@ -99,13 +94,13 @@ const getUserById = (req, res) => {
 const getUserByRole = (req, res) => {
   const { role } = req.params;
 
-  const sql = `SELECT id, username, pass, role FROM users WHERE role=? ;`;
+  const sql = `SELECT id, username, role FROM users WHERE role=? ;`;
   db.query(sql, [role], function(err, results) {
     if (err) {
       res.status(500).send("Internal error");
       throw err;
     }
-    if (!results.length) {
+    if (results && !results.length) {
       return res.status(400).send("Not users found according to that criteria");
     }
     res.status(200).json(results);
@@ -113,13 +108,13 @@ const getUserByRole = (req, res) => {
 };
 
 const getAllSplittedByRole = (req, res) => {
-  const sql = `SELECT id, username, pass, role FROM users;`;
+  const sql = `SELECT id, username, role FROM users;`;
   db.query(sql, function(err, results) {
     if (err) {
       res.status(500).send("Internal error");
       throw err;
     }
-    if (!results.length) {
+    if (results && !results.length) {
       return res.status(400).send("Not users found");
     }
     const normalUsers = results.filter(user => user.role === 2);
@@ -149,7 +144,7 @@ const login = (req, res) => {
       throw err;
     }
 
-    if (!results.length) {
+    if (results && !results.length) {
       return res.status(400).send("Wrong Username/Password Combination");
     }
     const token = util.generateString(28);
@@ -198,10 +193,8 @@ const viewUserFavorites = (req, res) => {
         res.status(500).send("Internal error");
         throw err;
       }
-      if (!movieRows.length) {
-        return res
-          .status(400)
-          .send("Not favorites movies found for that user ID");
+      if (movieRows && !movieRows.length) {
+        return res.status(400).send("Not favorites movies found for that user ID");
       }
       db.query(
         ` SELECT
@@ -257,13 +250,11 @@ const newFavorite = (req, res) => {
       res.status(500).send("Internal error");
       throw err;
     }
-    if (!results.affectedRows) {
+    if (results && !results.affectedRows) {
       return res.status(400).send("Couldn't add movie to favorites!");
     }
 
-    res
-      .status(200)
-      .json({ id_user: req.params.id_user, id_movie: req.params.id_movie });
+    res.status(200).json({ id_user: req.params.id_user, id_movie: req.params.id_movie });
   });
 };
 
