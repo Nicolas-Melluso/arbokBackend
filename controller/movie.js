@@ -120,7 +120,7 @@ const searchMovieByNameAPI = async (req, res) => {
 const fillAdminAdd = async (req, res) => {
   const page = req.params.page;
 
-  const apiCall = `https://api.themov iedb.org/3/movie/popular?api_key=${apiKey}&page=${page}&region=AR`;
+  const apiCall = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&page=${page}&region=AR`;
   const response = await fetch(apiCall).catch(() => {
     return res.status(500).send("Internal error");
   });
