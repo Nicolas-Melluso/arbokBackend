@@ -19,6 +19,69 @@ Luego de instalar estas cosas en nuestro sistema, debemos posicionarnos con la c
 ```
 npm install
 ```
+Luego de esto, es necesario en MYSQL crear la base de datos, la misma está mostrada en este esquema:
+
+```
+CREATE DATABASE arbok_movies;
+USE arbok_movies;
+
+CREATE TABLE users
+(id INT AUTO_INCREMENT,
+username VARCHAR (30) UNIQUE,
+pass VARCHAR (255),
+role INT,
+CONSTRAINT pk_id_user PRIMARY KEY (id));
+
+INSERT INTO	users (username,pass,role) VALUES ("flor", "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3", 1);
+INSERT INTO	users (username, pass, role) VALUES ("leo","a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3", 1);
+INSERT INTO	users (username,pass, role) VALUES ("martin","a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3", 2);
+
+CREATE TABLE movies
+(id INT AUTO_INCREMENT,
+title VARCHAR(255),
+description TEXT,
+image VARCHAR(255),
+CONSTRAINT pk_id_movie PRIMARY KEY(id));
+
+CREATE TABLE genres
+(id INT AUTO_INCREMENT,
+name VARCHAR(30),
+CONSTRAINT pk_id_genre PRIMARY KEY(id));
+
+INSERT INTO genres (id,name) VALUES (12, "Adventure");
+INSERT INTO genres (id,name) VALUES (14,"Fantasy");
+INSERT INTO genres (id,name) VALUES (16,"Animation");
+INSERT INTO genres (id,name) VALUES (18,"Drama");
+INSERT INTO genres (id,name) VALUES (27,"Horror");
+INSERT INTO genres (id,name) VALUES (28,"Action");
+INSERT INTO genres (id,name) VALUES (35,"Comedy");
+INSERT INTO genres (id,name) VALUES (36,"History");
+INSERT INTO genres (id,name) VALUES (37,"Western");
+INSERT INTO genres (id,name) VALUES (53,"Thriller");
+INSERT INTO genres (id,name) VALUES (80,"Crime");
+INSERT INTO genres (id,name) VALUES (99,"Documentary");
+INSERT INTO genres (id,name) VALUES (878,"Science Fiction");
+INSERT INTO genres (id,name) VALUES (9648,"Mystery");
+INSERT INTO genres (id,name) VALUES (10402,"Music");
+INSERT INTO genres (id,name) VALUES (10749,"Romance");
+INSERT INTO genres (id,name) VALUES (10751,"Family");
+INSERT INTO genres (id,name) VALUES (10752,"War");
+INSERT INTO genres (id,name) VALUES (10770,"TV Movie");
+
+CREATE TABLE movie_user( 
+id_user INT,
+id_movie INT,
+PRIMARY KEY (id_user,id_movie),
+CONSTRAINT FOREIGN KEY fk_id_user (id_user) REFERENCES users (id) ON DELETE CASCADE,
+CONSTRAINT FOREIGN KEY fk_id_movie (id_movie) REFERENCES movies (id) ON DELETE CASCADE );
+
+CREATE TABLE genre_movie( 
+id_genre INT,
+id_movie INT,
+PRIMARY KEY (id_genre, id_movie),
+CONSTRAINT FOREIGN KEY fk_id_genre (id_genre) REFERENCES genres (id) ON DELETE CASCADE,
+CONSTRAINT FOREIGN KEY fk_id_movie2 (id_movie) REFERENCES movies (id) ON DELETE CASCADE );
+```
 
 De esta forma, terminaremos de instalar todo lo que requiere nuestro proyecto. :+1:
 
@@ -90,7 +153,7 @@ Añade una nueva película, a ésta se le debe pasar por medio del body los atri
 
 ```
     {
-      name: "Sonic",
+      title: "Sonic",
       description: "Erizo",
       image: "/1.jpg",
       genres: [{id: 1}]
