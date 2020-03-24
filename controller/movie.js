@@ -164,8 +164,7 @@ const addNewData = (req, res) => {
   let sql = "INSERT INTO movies (title, description, image) VALUES (?, ?, ?);";
   db.query(sql, [title, description, image], (err, results) => {
     if (err) {
-      res.status(500).send("Internal error");
-      throw err;
+      res.status(500).send("No puede haber duplicados");
     }
     const { insertId } = results;
 
@@ -233,9 +232,14 @@ const deleteGenreMovieByID = (req, res) => {
 
 // SETS NEW VALUES FOR A MOVIE
 const update = (req, res) => {
-  const { title, description, image } = req.body;
-  const sql = `UPDATE movies SET title = ?, description = ?, image = ? WHERE id = ${req.params.id};`;
-  db.query(sql, [title, description, image], function(err, results) {
+  const { title, description, image, genres } = req.body;
+  const id = req.params.id;
+  const sql =
+    "UPDATE movies SET title = ?, description = ?, image = ? WHERE id = ?;";
+  db.query(sql, [title, description, image, id, genres], function(
+    err,
+    results
+  ) {
     if (err) {
       res.status(500).send("Internal error");
       throw err;
@@ -243,11 +247,16 @@ const update = (req, res) => {
     if (results && !results.affectedRows) {
       return res.status(400).send("Didn't find any movie to edit with that ID");
     }
+    // genres.forEach(gen => {
+    //   console.log(gen);
+    // });
+
     res.json({
-      id: res.params.id,
+      id: id,
       title: title,
       description: description,
-      image: image
+      image: image,
+      genres: genres
     });
   });
 };
