@@ -170,7 +170,7 @@ const addNewData = (req, res) => {
 
     genres.forEach((genre, i) => {
       let sql = `INSERT INTO genre_movie (id_genre, id_movie) VALUES (?, ${insertId})`;
-      db.query(sql, [genre.id, title], (err, data) => {
+      db.query(sql, [genre, title], (err, data) => {
         if (err) {
           let sql = "DELETE FROM movies WHERE title=?";
           db.query(sql, [title], (err, data) => {
